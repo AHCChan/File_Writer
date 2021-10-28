@@ -19,6 +19,9 @@ class Width_File_Writer(File_Writer):
     The File Writer is a file writer designed to write to flat files with a
     set maximum "width". (Number of characters per row) Exceptions to this
     can be made.
+    
+    When the write head reaches the maximum width, a newline is automatically
+    inserted. The only exception is when Write_F is used.
     """
     
     # Major Configurations #####################################################

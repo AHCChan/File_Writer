@@ -77,6 +77,21 @@ class Width_File_Writer(File_Writer):
     
     
     
+    # Property Methods #########################################################
+        
+    def __str__(self):
+        """
+        Return a string representation of the currently selected file.
+        """
+        sb = ("<{T} Object> - ".format(T = self._MSG__object_type) +
+                ["CLOSED", "OPENED"][self.file_opened] + "\n\t")
+        if self.file_path: sb += "PATH:\t\"{P}\"".format(P = self.file_path)
+        else: sb += "(No File Path specified.)"
+        sb += "\nCurrent width index: {W}".format(W = self._index)
+        return sb
+    
+    
+    
     # File Writing Methods #####################################################
     
     def Write(self, string):
@@ -87,8 +102,6 @@ class Width_File_Writer(File_Writer):
         length = len(string)
         total = self._index + length
         if total > self._CONFIG__file_width:
-            print "DDD"
-            print total, self._index, length
             gap = self._CONFIG__file_width - self._index
             self.file.write(string[:gap] + self.EOL)
             self._index = 0
@@ -128,6 +141,22 @@ class Width_File_Writer(File_Writer):
         Start a new line.
         """
         self.file.write(self.EOL)
+        self.Return()
+
+    def Return(self):
+        """
+        Return the index to the start of the line.
+        """
+        self._index = 0
+    
+    # File I/O Methods #########################################################
+    
+    def Close(self):
+        """
+        Close the object's file if the file is open. Do nothing if the object
+        does not have a file open.
+        """
+        File_Writer.Close(self)
         self._index = 0
 
 

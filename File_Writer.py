@@ -182,6 +182,7 @@ class File_Writer:
                     self.printE(self._MSG__overwrite_decline)
                     return 1
             self.printM(self._MSG__overwrite_accept)
+            self.file_path = file_path
         # Attempt to create
         try:
             f = open(file_path, "w")

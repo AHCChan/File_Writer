@@ -255,6 +255,14 @@ class File_Writer:
         self.file_path = False
         self.Open(temp)
     
+    def IsClosed(self):
+        """
+        Return whether or not the file is closed. If there is no file, return
+        True.
+        """
+        if type(self.file) == file: return self.file.closed
+        return True
+    
     
     
     # File Writing Methods #####################################################

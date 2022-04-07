@@ -263,6 +263,14 @@ class File_Writer:
         if type(self.file) == file: return self.file.closed
         return True
     
+    def IsOpen(self):
+        """
+        Return whether or not the file is open. If there is no file, return
+        True.
+        """
+        if type(self.file) == file: return not self.file.closed
+        return False
+    
     
     
     # File Writing Methods #####################################################
